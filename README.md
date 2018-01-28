@@ -5,7 +5,7 @@
 # Information:
 
 - Designed for 10.10+
-- iMessageParity is a mySIMBL plugin that allowa sending iMessages with effects on macOS
+- iMessageParity is a mySIMBL plugin that allows you to send iMessages with effects on macOS
 - Author: [w0lfschild](https://github.com/w0lfschild)
 
 # Note:
