@@ -4,9 +4,8 @@
 @interface IMMessageItem: NSObject {
     NSString *_expressiveSendStyleID;
 }
-@property(retain, nonatomic) NSString *expressiveSendStyleID; // @synthesize expressiveSendStyleID=_expressiveSendStyleID;
+@property(retain, nonatomic) NSString *expressiveSendStyleID;
 @end
-
 
 @interface ChatViewController : NSViewController
 - (void)_sendMessage;
@@ -16,15 +15,95 @@
 - (void)inputLineDidEnter:(id)arg1 isAudioMessage:(BOOL)arg2 expressiveSendStyleID:(NSString *)arg3;
 @end
 
-@interface _WB_ChatViewController: NSViewController
+ChatViewController *chatView;
+NSMutableArray *styleIDs;
+
+@interface iMessageParity : NSObject
+@end
+
+@implementation iMessageParity
+
++(void)load {
+    styleIDs = [[NSMutableArray alloc] init];
+    [styleIDs addObjectsFromArray:@[@"", @"com.apple.MobileSMS.expressivesend.impact", @"com.apple.MobileSMS.expressivesend.loud", @"com.apple.MobileSMS.expressivesend.gentle", @"com.apple.MobileSMS.expressivesend.invisibleink", @"com.apple.MobileSMS.effect.CKEchoEffect", @"com.apple.MobileSMS.effect.CKSpotlightEffect", @"com.apple.MobileSMS.effect.CKHappyBirthdayEffect", @"com.apple.MobileSMS.effect.CKConfettiEffect", @"com.apple.MobileSMS.effect.CKHeartEffect", @"com.apple.MobileSMS.effect.CKLasersEffect", @"com.apple.MobileSMS.effect.CKFireworksEffect", @"com.apple.MobileSMS.effect.CKShootingStarEffect", @"com.apple.MobileSMS.effect.CKSparklesEffect"]];
+    
+    NSLog(@"WE CARE: loaded iMessageParity");
+}
+
 @end
 
 
+ZKSwizzleInterface(_WB_SOInputLineViewController, SOInputLineViewController, NSViewController)
+@implementation _WB_SOInputLineViewController
+
+- (void)sendButtonClick:(NSButton *)sender {
+    NSString *effectString = styleIDs[sender.tag];
+    [chatView inputLineDidEnter:chatView isAudioMessage:false expressiveSendStyleID:effectString];
+}
+
+- (void)partyButtonClick:(NSButton *)sender {
+    // Create view controller
+    NSViewController *viewController = [[NSViewController alloc] init];
+    viewController = [[NSViewController alloc] initWithNibName:@"partyView" bundle:[NSBundle bundleWithIdentifier:@"com.sky.imessageParity"]];
+
+    // Setup buttons
+    for (NSButton* btn in viewController.view.subviews) {
+        if (btn.class == NSClassFromString(@"NSButton")) {
+            [btn setTarget:self];
+            [btn setAction:@selector(sendButtonClick:)];
+        }
+    }
+
+    // Create popover
+    NSPopover *entryPopover = [[NSPopover alloc] init];
+    [entryPopover setContentSize:viewController.view.frame.size];
+    [entryPopover setBehavior:NSPopoverBehaviorTransient];
+    [entryPopover setAnimates:YES];
+    [entryPopover setContentViewController:viewController];
+    
+    // Convert point to main window coordinates
+    NSRect entryRect = [sender convertRect:sender.bounds
+                                    toView:[[NSApp mainWindow] contentView]];
+    
+    // Show popover
+    [entryPopover showRelativeToRect:entryRect
+                              ofView:[[NSApp mainWindow] contentView]
+                       preferredEdge:NSMaxXEdge];
+}
+
+- (void)viewDidAppear {
+    static dispatch_once_t once;
+    dispatch_once(&once, ^ {
+        NSButton *smile = [self valueForKey:@"_smileyButton"];
+        NSRect newFrame = smile.frame;
+        newFrame.origin.x -= 20;
+        NSString *bundlePath = [[NSBundle bundleWithIdentifier:@"com.sky.imessageParity"] bundlePath];
+        NSImage *partyTime = [[NSImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/Contents/Resources/party.png", bundlePath]];
+        NSButton *effectsButton = [[NSButton alloc] init];
+        [effectsButton setFrame:newFrame];
+        [effectsButton setTarget:self];
+        [effectsButton setTitle:@"🎉"];
+        [effectsButton setAction:@selector(partyButtonClick:)];
+        [effectsButton setBezelStyle:NSShadowlessSquareBezelStyle];
+        [effectsButton setImage:partyTime];
+        [effectsButton setImageScaling:NSImageScaleProportionallyUpOrDown];
+        [effectsButton setBordered:false];
+        [effectsButton setHidden:NO];
+        [effectsButton setAutoresizingMask:NSViewMinXMargin];
+        [smile.superview addSubview:effectsButton];
+    });
+    ZKOrig(void);
+}
+
+@end
+
+ZKSwizzleInterface(_WB_ChatViewController, ChatViewController, NSViewController)
 @implementation _WB_ChatViewController
 
-+(void)load
-{
-    ZKSwizzle(_WB_ChatViewController, ChatViewController);
+- (void)viewDidAppear {
+    chatView = (ChatViewController*)self;
+    NSLog(@"WE CARE: Hooked");
+    ZKOrig(void);
 }
 
 - (void)_sendMessage:(BOOL)arg1 forceSend:(BOOL)arg2 {
@@ -38,56 +117,7 @@
 }
 
 - (void)inputLineDidEnter:(id)arg1 isAudioMessage:(BOOL)arg2 expressiveSendStyleID:(NSString *)arg3 {
-    NSAlert *alert = [[NSAlert alloc] init];
-    
-    [alert addButtonWithTitle:@"No effect"];
-    [alert addButtonWithTitle:@"Slam"];
-    [alert addButtonWithTitle:@"Loud"];
-    [alert addButtonWithTitle:@"Gentle"];
-    [alert addButtonWithTitle:@"Invisible Ink"];
-    
-    [alert addButtonWithTitle:@"Echo"];
-    [alert addButtonWithTitle:@"Spotlight"];
-    [alert addButtonWithTitle:@"Balloons"];
-    [alert addButtonWithTitle:@"Confetti"];
-    [alert addButtonWithTitle:@"Love"];
-    [alert addButtonWithTitle:@"Lasers"];
-    [alert addButtonWithTitle:@"Fireworks"];
-    [alert addButtonWithTitle:@"Shooting Star"];
-    [alert addButtonWithTitle:@"Celebration"];
-    
-    [alert setMessageText:@"Send with effect"];
-    [alert setInformativeText:@"Select a bubble effect or full screen effect. All effects, except Invisible Ink, are only visible if the receiver is viewing the message on an iOS device."];
-    [alert setAlertStyle:NSAlertStyleWarning];
-    NSUInteger runResult = [alert runModal];
-    if (runResult == 1001) {
-        arg3 = @"com.apple.MobileSMS.expressivesend.impact";
-    } else if (runResult == 1002) {
-        arg3 = @"com.apple.MobileSMS.expressivesend.loud";
-    } else if (runResult == 1003) {
-        arg3 = @"com.apple.MobileSMS.expressivesend.gentle";
-    } else if (runResult == 1004) {
-        arg3 = @"com.apple.MobileSMS.expressivesend.invisibleink";
-    } else if (runResult == 1005) {
-        arg3 = @"com.apple.messages.effect.CKEchoEffect";
-    } else if (runResult == 1006) {
-        arg3 = @"com.apple.messages.effect.CKSpotlightEffect";
-    } else if (runResult == 1007) {
-        arg3 = @"com.apple.messages.effect.CKHappyBirthdayEffect";
-    } else if (runResult == 1008) {
-        arg3 = @"com.apple.messages.effect.CKConfettiEffect";
-    } else if (runResult == 1009) {
-        arg3 = @"com.apple.messages.effect.CKHeartEffect";
-    } else if (runResult == 1010) {
-        arg3 = @"com.apple.messages.effect.CKLasersEffect";
-    } else if (runResult == 1011) {
-        arg3 = @"com.apple.messages.effect.CKFireworksEffect";
-    } else if (runResult == 1012) {
-        arg3 = @"com.apple.messages.effect.CKShootingStarEffect";
-    } else if (runResult == 1013) {
-        arg3 = @"com.apple.messages.effect.CKSparklesEffect";
-    }
-
+    NSLog(@"WE CARE: Trying to send a message! %@ : %hhd: %@", arg1, arg2, arg3);
     ZKOrig(void, arg1, arg2, arg3);
 }
 
