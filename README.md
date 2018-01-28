@@ -1,4 +1,4 @@
-# typeStatus
+# iMessageParity
 
 ![preview](preview.png)
 
