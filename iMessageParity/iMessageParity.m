@@ -25,7 +25,7 @@ NSMutableArray *styleIDs;
 
 +(void)load {
     styleIDs = [[NSMutableArray alloc] init];
-    [styleIDs addObjectsFromArray:@[@"", @"com.apple.MobileSMS.expressivesend.impact", @"com.apple.MobileSMS.expressivesend.loud", @"com.apple.MobileSMS.expressivesend.gentle", @"com.apple.MobileSMS.expressivesend.invisibleink", @"com.apple.MobileSMS.effect.CKEchoEffect", @"com.apple.MobileSMS.effect.CKSpotlightEffect", @"com.apple.MobileSMS.effect.CKHappyBirthdayEffect", @"com.apple.MobileSMS.effect.CKConfettiEffect", @"com.apple.MobileSMS.effect.CKHeartEffect", @"com.apple.MobileSMS.effect.CKLasersEffect", @"com.apple.MobileSMS.effect.CKFireworksEffect", @"com.apple.MobileSMS.effect.CKShootingStarEffect", @"com.apple.MobileSMS.effect.CKSparklesEffect"]];
+    [styleIDs addObjectsFromArray:@[@"", @"com.apple.MobileSMS.expressivesend.impact", @"com.apple.MobileSMS.expressivesend.loud", @"com.apple.MobileSMS.expressivesend.gentle", @"com.apple.MobileSMS.expressivesend.invisibleink", @"com.apple.messages.effect.CKEchoEffect", @"com.apple.messages.effect.CKSpotlightEffect", @"com.apple.messages.effect.CKHappyBirthdayEffect", @"com.apple.messages.effect.CKConfettiEffect", @"com.apple.messages.effect.CKHeartEffect", @"com.apple.messages.effect.CKLasersEffect", @"com.apple.messages.effect.CKFireworksEffect", @"com.apple.messages.effect.CKShootingStarEffect", @"com.apple.messages.effect.CKSparklesEffect"]];
     
     NSLog(@"WE CARE: loaded iMessageParity");
 }
