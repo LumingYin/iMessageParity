@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C04E20620056CED0009B96E /* iMessageParity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C04E20220056CED0009B96E /* iMessageParity.m */; };
 		3C04E20820056CED0009B96E /* ZKSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C04E20520056CED0009B96E /* ZKSwizzle.m */; };
-		FB3DE7E8201D990100FB52C3 /* party.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3DE7E7201D990000FB52C3 /* party.png */; };
+		D3B6F29D209FB38600C8F9C5 /* party.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D3B6F29C209FB38600C8F9C5 /* party.pdf */; };
 		FB3DE7EA201DB03500FB52C3 /* partyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB3DE7E9201DB03500FB52C3 /* partyView.xib */; };
 /* End PBXBuildFile section */
 
@@ -19,7 +19,7 @@
 		3C04E20420056CED0009B96E /* ZKSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKSwizzle.h; sourceTree = "<group>"; };
 		3C04E20520056CED0009B96E /* ZKSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSwizzle.m; sourceTree = "<group>"; };
 		A7B30BA11A9BA5E500B08F72 /* iMessageParity.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMessageParity.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB3DE7E7201D990000FB52C3 /* party.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = party.png; sourceTree = "<group>"; };
+		D3B6F29C209FB38600C8F9C5 /* party.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = party.pdf; sourceTree = "<group>"; };
 		FB3DE7E9201DB03500FB52C3 /* partyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = partyView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -38,7 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				FBA32091201DD5CF000200C1 /* ZKSwizzle */,
-				FB3DE7E7201D990000FB52C3 /* party.png */,
+				D3B6F29C209FB38600C8F9C5 /* party.pdf */,
 				3C04E20220056CED0009B96E /* iMessageParity.m */,
 				FB3DE7E9201DB03500FB52C3 /* partyView.xib */,
 				3C04E20320056CED0009B96E /* Info.plist */,
@@ -129,7 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB3DE7EA201DB03500FB52C3 /* partyView.xib in Resources */,
-				FB3DE7E8201D990100FB52C3 /* party.png in Resources */,
+				D3B6F29D209FB38600C8F9C5 /* party.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
