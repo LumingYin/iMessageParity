@@ -78,7 +78,7 @@ ZKSwizzleInterface(_WB_SOInputLineViewController, SOInputLineViewController, NSV
         NSRect newFrame = smile.frame;
         newFrame.origin.x -= 20;
         NSString *bundlePath = [[NSBundle bundleWithIdentifier:@"com.sky.imessageParity"] bundlePath];
-        NSImage *partyTime = [[NSImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/Contents/Resources/party.png", bundlePath]];
+        NSImage *partyTime = [[NSImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/Contents/Resources/party.pdf", bundlePath]];
         NSButton *effectsButton = [[NSButton alloc] init];
         [effectsButton setFrame:newFrame];
         [effectsButton setTarget:self];
