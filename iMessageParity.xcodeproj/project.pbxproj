@@ -270,7 +270,7 @@
 				INFOPLIST_FILE = "$(PROJECT_DIR)/$(PROJECT_NAME)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Application Support/SIMBL/Plugins";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.PolarHacker.iMessageParity;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sky.imessageParity;
 				PRODUCT_NAME = iMessageParity;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "DockTests/DockTests-Bridging-Header.h";
@@ -288,7 +288,7 @@
 				INFOPLIST_FILE = "$(PROJECT_DIR)/$(PROJECT_NAME)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Application Support/SIMBL/Plugins";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.PolarHacker.iMessageParity;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sky.imessageParity;
 				PRODUCT_NAME = iMessageParity;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "DockTests/DockTests-Bridging-Header.h";

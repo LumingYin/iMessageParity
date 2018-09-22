@@ -6,7 +6,6 @@
 
 - Designed for 10.10+
 - iMessageParity is a mySIMBL plugin that allows you to send iMessages with effects on macOS
-- This fork adds emojis next to the effects, and the text has been tweaked to match that of iOS.
 - Author: [w0lfschild](https://github.com/w0lfschild)
 
 # Note:

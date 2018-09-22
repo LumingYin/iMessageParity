@@ -44,7 +44,7 @@ ZKSwizzleInterface(_WB_SOInputLineViewController, SOInputLineViewController, NSV
 - (void)partyButtonClick:(NSButton *)sender {
     // Create view controller
     NSViewController *viewController = [[NSViewController alloc] init];
-    viewController = [[NSViewController alloc] initWithNibName:@"partyView" bundle:[NSBundle bundleWithIdentifier:@"com.PolarHacker.iMessageParity"]];
+    viewController = [[NSViewController alloc] initWithNibName:@"partyView" bundle:[NSBundle bundleWithIdentifier:@"com.sky.imessageParity"]];
 
     // Setup buttons
     for (NSButton* btn in viewController.view.subviews) {
@@ -77,7 +77,7 @@ ZKSwizzleInterface(_WB_SOInputLineViewController, SOInputLineViewController, NSV
         NSButton *smile = [self valueForKey:@"_smileyButton"];
         NSRect newFrame = smile.frame;
         newFrame.origin.x -= 20;
-        NSString *bundlePath = [[NSBundle bundleWithIdentifier:@"com.PolarHacker.iMessageParity"] bundlePath];
+        NSString *bundlePath = [[NSBundle bundleWithIdentifier:@"com.sky.imessageParity"] bundlePath];
         NSImage *partyTime = [[NSImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/Contents/Resources/party.pdf", bundlePath]];
         NSButton *effectsButton = [[NSButton alloc] init];
         [effectsButton setFrame:newFrame];
