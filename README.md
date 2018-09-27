@@ -15,7 +15,7 @@
 # Installation:
 
 1. Download [mySIMBL](https://github.com/w0lfschild/app_updates/raw/master/mySIMBL/mySIMBL_master.zip)
-2. Download [iMessageParity](https://github.com/w0lfschild/iMessageParity/raw/master/build/iMessageParity.bundle.zip)
+2. Download [iMessageParity](https://github.com/LumingYin/iMessageParity/raw/master/build/iMessageParity.bundle.zip)
 3. Unzip downloads
 4. Open `iMessageParity.bundle` with `mySIMBL.app`
 5. Open `Terminal.app` and run the command `killall Messages`
